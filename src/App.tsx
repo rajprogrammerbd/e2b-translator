@@ -1,11 +1,15 @@
-import React from 'react'
+import React from 'react';
+import Header from './components/Header';
 
 function App() {
 
   return (
-    <div className="container bg-slate-500 mx-width">
-      <h3 className="">Hello World!</h3>
-    </div>
+    <>
+      <Header isLogin={false} />
+      <div className="md:container mx-auto">
+        <small>Hello world</small>
+      </div>    
+    </>
   )
 }
 
