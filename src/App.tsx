@@ -1,19 +1,14 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import Header from './components/Header';
-import { RootState } from './redux/store';
+import React from 'react'
+import RouteApp from './routes';
 
 function App() {
-  const isLogin = useSelector((state: RootState) => state.login.isLogin);
-
-  return (
-    <>
-      <Header isLogin={isLogin} />
-      <div className="md:container mx-auto">
-        <small>Hello world</small>
-      </div>    
-    </>
-  )
+  return <RouteApp />;
 }
 
 export default App
+
+/*
+    <div className="container bg-slate-500 mx-width">
+      <h3 className="">Hello World!</h3>
+    </div>
+    */
