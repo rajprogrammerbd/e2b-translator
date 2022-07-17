@@ -5,6 +5,9 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      'dosis': ['Dosis', 'sans-serif'],
+    },
     extend: {},
   },
   plugins: [],
