@@ -1,16 +1,18 @@
 import React from 'react';
-import { useFlags } from 'flagsmith/react';
 import Header from '../components/Header';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import NonLoginHomeContent from '../components/NonLoginHomeContent';
 
 function HomePage() {
-  const featureFlags = useFlags(['demo_flag_for_testing']);
-  const flags =  featureFlags['demo_flag_for_testing'].enabled;
+
+  const isLogin = useSelector((state: RootState) => state.login.isLogin);
 
     return (
         <>
           <Header />
-          <div className="md:container mx-auto">
-            {flags ? <h3 className="">Hello World!</h3> : null }
+          <div className="md:container mx-auto prose">
+            {isLogin ? null : <NonLoginHomeContent />}
           </div>
         </>
     );
