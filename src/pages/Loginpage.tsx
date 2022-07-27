@@ -47,12 +47,12 @@ function LoginPage() {
 
                     <label className="block">
                         <span className="block text-sm font-medium text-slate-700 mb-2">Email:</span>
-                        <input type="text" value={state.email} onChange={valueChanges} name="email" className="w-full py-2 px-3 border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" placeholder="Enter your email" />
+                        <input type="text" value={state.email} data-testid="emailValueChanges" onChange={valueChanges} name="email" className="w-full py-2 px-3 border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" placeholder="Enter your email" />
                     </label>
 
                     <label className="block mt-6 mb-3">
                         <span className="block text-sm font-medium text-slate-700 mb-2">Password:</span>
-                        <input type="password" value={state.password} onChange={valueChanges} name="password" className="w-full py-2 px-3 border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" placeholder="Enter your password" />
+                        <input type="password" value={state.password} data-testid="passwordValueChanges" onChange={valueChanges} name="password" className="w-full py-2 px-3 border-slate-200 placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-500" placeholder="Enter your password" />
                     </label>
 
                     {state.error !== '' ? <small className="block text-red-600">{state.error}</small> : null}
