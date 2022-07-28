@@ -10,7 +10,7 @@
     "serve": "serve ./dist",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o docs-build -s ./stories/assets"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
