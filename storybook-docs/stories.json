@@ -1,1 +1,0 @@
-{"v":3,"stories":{"button--xs-button":{"id":"button--xs-button","title":"Button","name":"XS Button","importPath":"./src/common/Buttons/index.stories.tsx"},"button--lg-button":{"id":"button--lg-button","title":"Button","name":"LG Button","importPath":"./src/common/Buttons/index.stories.tsx"}}}
