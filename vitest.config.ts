@@ -6,6 +6,9 @@ export default defineConfig({
         globals: true,
         environment: 'jsdom',
         setupFiles: ["@testing-library/jest-dom/extend-expect"],
+        coverage: {
+            reporter: ['text', 'json', 'lcov']
+        }
     },
     plugins: [react()]
 });
