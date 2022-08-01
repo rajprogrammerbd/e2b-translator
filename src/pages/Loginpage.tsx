@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
+import LoadingIcons from 'react-loading-icons';
+import { useLoginRequestMutation } from '../redux/services/loginApi';
+import { loginSuccess, loginFailed } from '../redux/slice/login';
+import resetReduxStore from '../redux/actions/resetReduxStore';
 import Header from '../components/Header';
+import { useDispatch } from 'react-redux';
+
+interface CustomError {
+    data: {
+        message: string;
+    }
+}
+
+interface CustomErrorString {
+    data: string;
+}
 
 interface States {
     email: string;
     password: string;
     error: string;
+    loading: boolean;
 }
 
 let schema = yup.object().shape({
@@ -14,7 +30,28 @@ let schema = yup.object().shape({
 });
 
 function LoginPage() {
-    const [state, setState] = useState<States>({ email: '', password: '', error: '' });
+    const dispatch = useDispatch();
+    const [state, setState] = useState<States>({ email: '', password: '', error: '', loading: true });
+    const [loginRequest, { data, error, isError, isLoading }] = useLoginRequestMutation();
+
+    useEffect(() => {
+        if (window.localStorage.getItem('persist:roots') !== null) {
+            dispatch(resetReduxStore());
+        }
+    }, [])
+
+    useEffect(() => {
+        if (isError) {
+            console.log('this condition running');
+            dispatch(loginFailed());
+        }
+    }, [isError, error]);
+
+    useEffect(() => {
+        if (data !== undefined) {
+            dispatch(loginSuccess({ ...data }));
+        }
+    }, [data]);
 
     const valueChanges = async (e: any) => {
         const { value } = e.target;
@@ -37,6 +74,14 @@ function LoginPage() {
             }
         }
     }
+
+    const onSubmitted = (e: any) => {
+        e.preventDefault();
+        if ( state.email !== '' && state.password !== '' ) {
+            loginRequest({ email: state.email, password: state.password });
+        }
+    }
+
     return (
         <>
           <Header />
@@ -56,7 +101,11 @@ function LoginPage() {
                     </label>
 
                     {state.error !== '' ? <small className="block text-red-600">{state.error}</small> : null}
-                    <input type="submit" disabled={(state.email === '' || state.password === '') ? true : false} className="disabled:opacity-50 bg-sky-500 text-white p-2 rounded text-xs cursor-pointer" value="LOGIN" />
+                    {isError ? <small className="block text-red-600">{(typeof (error as CustomErrorString)?.data === 'string') ? (error as CustomErrorString)?.data : (error as CustomError).data?.message}</small> : null}
+                    <div className="flex items-center">
+                      <input type="submit" onClick={onSubmitted} disabled={(state.email === '' || state.password === '') ? true : false} className=" float-left disabled:opacity-50 bg-sky-500 text-white p-2 rounded text-xs cursor-pointer" value="LOGIN" />
+                      {isLoading ? <LoadingIcons.Puff stroke="#0ea5e9" className="" height="20px"  /> : null}
+                    </div>
                 </fieldset>
             </form>
           </div>

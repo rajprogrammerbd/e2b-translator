@@ -1,15 +1,16 @@
 import React from 'react';
+import {describe, expect, it, vi} from 'vitest';
 import { render, act, screen, fireEvent } from "@testing-library/react";
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import LoginPage from './Loginpage';
 
-const initialState = { login: { isLogin: false } };
+const initialState = { login: { isLogin: false, user: {} }, loginApi: {} };
 const mockStore = configureStore();
 let store = mockStore(initialState);
 
-jest.mock('react-router-dom', () => ({
-    Link: jest.fn()
+vi.mock('react-router-dom', () => ({
+    Link: vi.fn()
 }));
 
 describe('Loginpage', () => {
@@ -29,6 +30,7 @@ describe('Loginpage', () => {
         await act(() => {
             fireEvent.change(screen.getByLabelText(/password:/i), { target: { value: "demo" } });
         });
+
 
         expect(screen.getByText('Email and password must be vaildate')).toBeInTheDocument();
 
