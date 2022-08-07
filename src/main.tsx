@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux';
 import flagsmith from 'flagsmith';
@@ -8,7 +8,7 @@ import { store, persistorStore } from './redux/store';
 import App from './App';
 import './index.css';
 
-const FlagsmithProvider: any = FlagsmithProviderComponent; // FIXME
+const FlagsmithProvider: any = FlagsmithProviderComponent;
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

@@ -42,7 +42,6 @@ function LoginPage() {
 
     useEffect(() => {
         if (isError) {
-            console.log('this condition running');
             dispatch(loginFailed());
         }
     }, [isError, error]);
@@ -103,7 +102,7 @@ function LoginPage() {
                     {state.error !== '' ? <small className="block text-red-600">{state.error}</small> : null}
                     {isError ? <small className="block text-red-600">{(typeof (error as CustomErrorString)?.data === 'string') ? (error as CustomErrorString)?.data : (error as CustomError).data?.message}</small> : null}
                     <div className="flex items-center">
-                      <input type="submit" onClick={onSubmitted} disabled={(state.email === '' || state.password === '') ? true : false} className=" float-left disabled:opacity-50 bg-sky-500 text-white p-2 rounded text-xs cursor-pointer" value="LOGIN" />
+                      <input type="submit" onClick={onSubmitted} data-testid="login-submitted" disabled={(state.email === '' || state.password === '') ? true : false} className=" float-left disabled:opacity-50 bg-sky-500 text-white p-2 rounded text-xs cursor-pointer" value="LOGIN" />
                       {isLoading ? <LoadingIcons.Puff stroke="#0ea5e9" className="" height="20px"  /> : null}
                     </div>
                 </fieldset>

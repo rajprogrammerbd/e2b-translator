@@ -3,10 +3,14 @@ import {describe, expect, it, vi} from 'vitest';
 import { render, act, screen, fireEvent } from "@testing-library/react";
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
+import { loginApi } from '../redux/services/loginApi';
+import thunk from 'redux-thunk';
 import LoginPage from './Loginpage';
+import server from '../mocks/server';
 
 const initialState = { login: { isLogin: false, user: {} }, loginApi: {} };
-const mockStore = configureStore();
+const middlewares = [thunk, loginApi.middleware];
+const mockStore = configureStore(middlewares);
 let store = mockStore(initialState);
 
 vi.mock('react-router-dom', () => ({
@@ -14,6 +18,14 @@ vi.mock('react-router-dom', () => ({
 }));
 
 describe('Loginpage', () => {
+    beforeAll(() => server.listen());
+
+    afterAll(() => server.close());
+    
+    afterEach(() => {
+      server.resetHandlers();
+    });
+
     it('login form validation', async () => {
         render(
             <Provider store={store}>
@@ -40,6 +52,12 @@ describe('Loginpage', () => {
 
         await act(() => {
             fireEvent.change(screen.getByLabelText(/password:/i), { target: { value: "demo@password" } });
+        });
+
+        const loggedInButton = screen.getByTestId('login-submitted');
+
+        await act(() => {
+            fireEvent.click(loggedInButton);
         });
     });
 });
