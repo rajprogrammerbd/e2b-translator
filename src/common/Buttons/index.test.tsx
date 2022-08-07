@@ -1,7 +1,9 @@
 import React from 'react';
+import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Button from '.';
 import { MemoryRouter } from 'react-router-dom';
+import '@testing-library/jest-dom';
 
 describe('Buttons', () => {
     it('xs button renders', () => {
