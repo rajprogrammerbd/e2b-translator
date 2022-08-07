@@ -15,7 +15,7 @@ import loginSlice from './slice/login';
 import storage from 'redux-persist/lib/storage';
 import { RESET } from "./actions/resetReduxStore";
 
-const persistConfig = {
+export const persistConfig = {
   key: 'root',
   storage,
 };
