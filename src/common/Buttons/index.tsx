@@ -20,7 +20,7 @@ function Button(props: IButton) {
     if (size === 'xs') {
         classNames = 'border text-xs px-2 py-1 bg-sky-500 hover:bg-sky-50 hover:text-sky-500 hover:ease-in-out duration-300 text-slate-200 rounded border-gray-200 shadow-sm font-sans subpixel-antialiased font-bold'
     } else if (size === 'lg') {
-        classNames = 'px-3 py-2 xxs:px-2 rounded-md bg-transparent no-underline border-2 text-sky-400 border-sky-400 mt-3';
+        classNames = 'xxs:mx-0 mx-3 px-3 py-2 xxs:px-2 rounded-md bg-transparent no-underline border-2 text-sky-400 border-sky-400 mt-3';
     }
 
     return (
