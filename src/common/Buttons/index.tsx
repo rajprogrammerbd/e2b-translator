@@ -13,10 +13,11 @@ interface IButton {
     size: ITypes;
     noRoute?: boolean;
     fn?: () => void;
+    testid?: string;
 }
 
 function Button(props: IButton) {
-    const { message, to, size, noRoute = false, fn } = props;
+    const { message, to, size, noRoute = false, fn, testid = 'default-button-id' } = props;
     let classNames;
 
     if (size === 'xs') {
@@ -27,11 +28,11 @@ function Button(props: IButton) {
 
     if (noRoute) {
         return (
-            <button className={classNames} onClick={fn}>{message}</button>
+            <button className={classNames} onClick={fn} data-testid={testid}>{message}</button>
         );
     } else {
         return (
-            <Link className={classNames} to={to}>{message}</Link>
+            <Link className={classNames} to={to}  data-testid={testid}>{message}</Link>
         );
     }
 }

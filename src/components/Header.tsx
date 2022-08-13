@@ -20,7 +20,7 @@ function Header() {
         <div className="px-4 py-2 md:py-3 bg-sky-500">
             <div className="flex justify-between items-center">
                 <Link to="/" className="text-white text-base md:text-lg drop-shadow-2xl">Translator</Link>
-                {isLogin ? <Button to="/login" noRoute fn={fn} message="Logout" size="xs" /> : <Button to="/login" message="Login" size="xs" />}
+                {isLogin ? <Button to="/login" testid="logout-button" noRoute fn={fn} message="Logout" size="xs" /> : <Button to="/login" testid="login-button" message="Login" size="xs" />}
             </div>
         </div>
     );

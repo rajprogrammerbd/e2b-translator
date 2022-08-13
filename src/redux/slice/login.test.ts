@@ -1,5 +1,4 @@
-import { useDispatch } from 'react-redux';
-import {describe, expect, it, test, vi} from 'vitest';
+import {describe, expect, it} from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
 import { loginSlice } from './login';
 
