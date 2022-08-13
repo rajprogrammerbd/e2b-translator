@@ -2,6 +2,12 @@ import { faker } from '@faker-js/faker';
 import { rest } from 'msw';
 
 export const handlers = [
+  rest.post(`${import.meta.env.VITE_BACKEND_API_VARIABLE}auth/logout`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({ message: 'ok' }),
+    )
+  }),
   rest.post(`${import.meta.env.VITE_BACKEND_API_VARIABLE}auth/login`, (req, res, ctx) => {
     const name = faker.name.findName();
     const email = faker.internet.email();

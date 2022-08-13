@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 import LoadingIcons from 'react-loading-icons';
 import { useLoginRequestMutation } from '../redux/services/loginApi';
-import { loginSuccess, loginFailed } from '../redux/slice/login';
-import resetReduxStore from '../redux/actions/resetReduxStore';
+import { loginSuccess, loginFailed, resetLogin } from '../redux/slice/login';
 import Header from '../components/Header';
 import { useDispatch } from 'react-redux';
 
@@ -36,7 +35,7 @@ function LoginPage() {
 
     useEffect(() => {
         if (window.localStorage.getItem('persist:roots') !== null) {
-            dispatch(resetReduxStore());
+            dispatch(resetLogin({}));
         }
     }, [])
 
@@ -48,6 +47,7 @@ function LoginPage() {
 
     useEffect(() => {
         if (data !== undefined) {
+            console.log('render this line');
             dispatch(loginSuccess({ ...data }));
         }
     }, [data]);

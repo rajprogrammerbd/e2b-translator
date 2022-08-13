@@ -12,7 +12,9 @@ function HomePage() {
         <>
           <Header />
           <div className="md:container mx-auto prose">
-            {isLogin ? null : <NonLoginHomeContent />}
+            {isLogin ? (
+              <h3>Hello and welcome to loggedin page</h3>
+            ) : <NonLoginHomeContent />}
           </div>
         </>
     );

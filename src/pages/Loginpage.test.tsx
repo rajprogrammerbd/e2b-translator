@@ -6,7 +6,6 @@ import configureStore from 'redux-mock-store';
 import { loginApi } from '../redux/services/loginApi';
 import thunk from 'redux-thunk';
 import LoginPage from './Loginpage';
-import server from '../mocks/server';
 
 const initialState = { login: { isLogin: false, user: {} }, loginApi: {} };
 const middlewares = [thunk, loginApi.middleware];
@@ -18,14 +17,6 @@ vi.mock('react-router-dom', () => ({
 }));
 
 describe('Loginpage', () => {
-    beforeAll(() => server.listen());
-
-    afterAll(() => server.close());
-    
-    afterEach(() => {
-      server.resetHandlers();
-    });
-
     it('login form validation', async () => {
         render(
             <Provider store={store}>

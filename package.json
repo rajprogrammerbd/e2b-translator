@@ -60,7 +60,8 @@
     "ts-node": "^10.9.1",
     "typescript": "^4.6.4",
     "vite": "^3.0.0",
-    "vitest": "^0.20.2"
+    "vitest": "^0.20.2",
+    "whatwg-fetch": "^3.6.2"
   },
   "msw": {
     "workerDirectory": ""

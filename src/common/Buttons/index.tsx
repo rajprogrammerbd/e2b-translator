@@ -11,10 +11,13 @@ interface IButton {
     message: string;
     to: string;
     size: ITypes;
+    noRoute?: boolean;
+    fn?: () => void;
+    testid?: string;
 }
 
 function Button(props: IButton) {
-    const { message, to, size } = props;
+    const { message, to, size, noRoute = false, fn, testid = 'default-button-id' } = props;
     let classNames;
 
     if (size === 'xs') {
@@ -23,9 +26,15 @@ function Button(props: IButton) {
         classNames = 'xxs:mx-0 mx-3 px-3 py-2 xxs:px-2 rounded-md bg-transparent no-underline border-2 text-sky-400 border-sky-400 mt-3';
     }
 
-    return (
-        <Link className={classNames} to={to}>{message}</Link>
-    );
+    if (noRoute) {
+        return (
+            <button className={classNames} onClick={fn} data-testid={testid}>{message}</button>
+        );
+    } else {
+        return (
+            <Link className={classNames} to={to}  data-testid={testid}>{message}</Link>
+        );
+    }
 }
 
 export default Button;
