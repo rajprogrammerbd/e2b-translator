@@ -15,12 +15,17 @@ interface ArgType {
     }
 }
 
+interface LogoutRes {
+    message: string;
+}
+
 export const loginApi = createApi({
     reducerPath: 'loginApi',
     baseQuery: fetchBaseQuery({
         baseUrl: import.meta.env.VITE_BACKEND_API_VARIABLE,
         prepareHeaders: (headers) => {
             const cookieValue = Cookies.get('LOGIN_ACCESS_COOKIE');
+            console.log('cookies value ', cookieValue);
             if (cookieValue !== undefined) {
                 headers.set('Authorization', `Bearer ${cookieValue}`);
             }
@@ -28,6 +33,13 @@ export const loginApi = createApi({
         },
     }),
     endpoints: (build) => ({
+        logoutRequest: build.mutation<LogoutRes, void>({
+            query: () => ({
+                url: 'auth/logout',
+                method: 'POST',
+                credentials: 'include',
+            }),
+        }),
         loginRequest: build.mutation<ResType, ArgType>({
             query: (body: ArgType) => ({
                 url: `auth/login`,
@@ -39,4 +51,4 @@ export const loginApi = createApi({
     })
 });
 
-export const { useLoginRequestMutation } = loginApi;
+export const { useLogoutRequestMutation, useLoginRequestMutation } = loginApi;

@@ -16,14 +16,14 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <HashRouter>
       <Provider store={store}>
         <PersistGate persistor={persistorStore}>
-          <FlagsmithProvider
-            options={{
-              environmentID: import.meta.env.VITE_FLAGSMITH_VARIABLE,
-              angularHttpClient: null,
-            }}
-            flagsmith={flagsmith}
-          >
-            <App />
+            <FlagsmithProvider
+              options={{
+                environmentID: import.meta.env.VITE_FLAGSMITH_VARIABLE,
+                angularHttpClient: null,
+              }}
+              flagsmith={flagsmith}
+            >
+              <App />
           </FlagsmithProvider>
         </PersistGate>
       </Provider>

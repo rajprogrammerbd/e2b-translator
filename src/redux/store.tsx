@@ -11,8 +11,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { loginApi } from "./services/loginApi";
-import loginSlice from './slice/login';
+import loginSlice, { initialState } from './slice/login';
 import storage from 'redux-persist/lib/storage';
+import Cookies from "js-cookie";
 import { RESET } from "./actions/resetReduxStore";
 
 export const persistConfig = {
@@ -26,10 +27,13 @@ const appReducers = combineReducers({
 });
 
 const rootReducer = (state: any, action: any) => {
+  /*
   if (action.type === RESET) {
-    localStorage.removeItem('persist:root');
-    state = undefined;
+    // Cookies.remove('LOGIN_ACCESS_COOKIE');
+    // storage.removeItem('root');
+    state = initialState;
   }
+  */
 
   return appReducers(state, action);
 };

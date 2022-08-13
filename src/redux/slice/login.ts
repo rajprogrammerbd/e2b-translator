@@ -9,7 +9,7 @@ export interface LoginState {
   };
 }
 
-const initialState = {
+export const initialState = {
   isLogin: false,
   user: {},
 } as LoginState;
@@ -26,9 +26,14 @@ export const loginSlice = createSlice({
       state.isLogin = false;
       state.user = {};
     },
+
+    resetLogin(state: any, action: any) {
+      state.isLogin = false;
+      state.user = {};
+    }
   },
 })
 
-export const { loginSuccess, loginFailed } = loginSlice.actions;
+export const { loginSuccess, loginFailed, resetLogin } = loginSlice.actions;
 
 export default loginSlice.reducer;
