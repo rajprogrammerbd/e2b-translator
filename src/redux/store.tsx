@@ -11,10 +11,8 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { loginApi } from "./services/loginApi";
-import loginSlice, { initialState } from './slice/login';
+import loginSlice from './slice/login';
 import storage from 'redux-persist/lib/storage';
-import Cookies from "js-cookie";
-import { RESET } from "./actions/resetReduxStore";
 
 export const persistConfig = {
   key: 'root',
@@ -25,20 +23,6 @@ const appReducers = combineReducers({
   [loginApi.reducerPath]: loginApi.reducer,
   login: loginSlice,
 });
-
-const rootReducer = (state: any, action: any) => {
-  /*
-  if (action.type === RESET) {
-    // Cookies.remove('LOGIN_ACCESS_COOKIE');
-    // storage.removeItem('root');
-    state = initialState;
-  }
-  */
-
-  return appReducers(state, action);
-};
-
-export default rootReducer;
 
 const persistedReducer = persistReducer(persistConfig, appReducers);
 

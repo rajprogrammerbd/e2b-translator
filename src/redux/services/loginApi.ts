@@ -25,7 +25,6 @@ export const loginApi = createApi({
         baseUrl: import.meta.env.VITE_BACKEND_API_VARIABLE,
         prepareHeaders: (headers) => {
             const cookieValue = Cookies.get('LOGIN_ACCESS_COOKIE');
-            console.log('cookies value ', cookieValue);
             if (cookieValue !== undefined) {
                 headers.set('Authorization', `Bearer ${cookieValue}`);
             }
