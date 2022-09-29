@@ -47,7 +47,6 @@ function LoginPage() {
 
     useEffect(() => {
         if (data !== undefined) {
-            console.log('render this line');
             dispatch(loginSuccess({ ...data }));
         }
     }, [data]);
