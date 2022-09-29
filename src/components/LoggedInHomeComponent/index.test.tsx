@@ -30,7 +30,7 @@ describe('LoggedInHomeComponent', () => {
                 <LoggedInHomeComponent />
             </Provider>
         );
-    
+        
         expect(screen.getByText('Hello World!')).not.toBeEmptyDOMElement();
     });
 });
