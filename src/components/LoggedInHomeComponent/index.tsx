@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { displayedAnimation } from '../../redux/slice/login';
 import { RootState } from '../../redux/store';
