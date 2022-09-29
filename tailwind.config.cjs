@@ -8,6 +8,8 @@ module.exports = {
   theme: {
     screens: {
       'xxs': '603px',
+      'xxz': '830px',
+      'zzy': '220px',
       ...defaultTheme.screens,
     },
     fontFamily: {
@@ -15,5 +17,8 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [require('@tailwindcss/typography'),],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require("tailwindcss-animate")
+  ],
 }

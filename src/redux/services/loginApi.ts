@@ -27,6 +27,7 @@ export const loginApi = createApi({
             const cookieValue = Cookies.get('LOGIN_ACCESS_COOKIE');
             if (cookieValue !== undefined) {
                 headers.set('Authorization', `Bearer ${cookieValue}`);
+                // headers.set('Cookie', `LOGIN_ACCESS_COOKIE=${cookieValue}`);
             }
             return headers;
         },

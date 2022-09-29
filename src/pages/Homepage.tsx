@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import NonLoginHomeContent from '../components/NonLoginHomeContent';
+import LoggedInHomeComponent from '../components/LoggedInHomeComponent';
 
 function HomePage() {
 
@@ -11,10 +12,8 @@ function HomePage() {
     return (
         <>
           <Header />
-          <div className="md:container mx-auto prose">
-            {isLogin ? (
-              <h3>Hello and welcome to loggedin page</h3>
-            ) : <NonLoginHomeContent />}
+          <div className="md:container mx-auto prose flex items-center justify-center flex-col">
+            {isLogin ? <LoggedInHomeComponent />: <NonLoginHomeContent />}
           </div>
         </>
     );
